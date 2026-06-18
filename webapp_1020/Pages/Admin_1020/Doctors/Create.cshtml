@@ -1,0 +1,49 @@
+﻿@page
+@model webapp_1020.Pages.Admin_1020.Doctors.CreateModel
+@{
+    ViewData["Title"] = "নতুন ডাক্তার";
+}
+
+<div class="container mt-4" style="max-width: 600px;">
+    <div class="card shadow border-0 rounded-3">
+        <div class="card-header bg-primary text-white p-3">
+            <h4 class="mb-0">👨‍⚕️ নতুন ডাক্তারের প্রোফাইল তৈরি করুন</h4>
+        </div>
+        <div class="card-body p-4">
+            <form method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Doctor.Name" class="control-label fw-bold mb-1">ডাক্তারের নাম:</label>
+                    <input asp-for="Doctor.Name" class="form-control" placeholder="যেমন: Dr. Samin Yeasir" />
+                    <span asp-validation-for="Doctor.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Doctor.Qualification" class="control-label fw-bold mb-1">ডিগ্রী/যোগ্যতা:</label>
+                    <input asp-for="Doctor.Qualification" class="form-control" placeholder="যেমন: MBBS, FCPS (Cardiology)" />
+                    <span asp-validation-for="Doctor.Qualification" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Doctor.CategoryId" class="control-label fw-bold mb-1">ডিপার্টমেন্ট/ক্যাটাগরি সিলেক্ট করুন:</label>
+                    <select asp-for="Doctor.CategoryId" class="form-select" asp-items="ViewBag.CategoryId">
+                        <option value="">-- বিভাগ বেছে নিন --</option>
+                    </select>
+                    <span asp-validation-for="Doctor.CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-page="Index" class="btn btn-outline-secondary px-4">🔙 তালিকায় ফিরে যান</a>
+                    <button type="submit" class="btn-primary-custom">সংরক্ষণ করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

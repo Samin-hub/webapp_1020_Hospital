@@ -1,0 +1,24 @@
+﻿@page
+@model webapp_1020.Pages.Admin_1020.Doctors.DeleteModel
+@{
+    ViewData["Title"] = "ডাক্তার ডিলিট";
+}
+
+<div class="container mt-4" style="max-width: 500px;">
+    <div class="card shadow border-0 rounded-3">
+        <div class="card-header bg-danger text-white p-3 text-center">
+            <h4 class="mb-0">⚠️ আপনি কি নিশ্চিত এই প্রোফাইলটি মুছবেন?</h4>
+        </div>
+        <div class="card-body p-4 text-center">
+            <h3 class="text-primary fw-bold">👨‍⚕️ @Model.Doctor.Name</h3>
+            <p class="badge bg-secondary">@Model.Doctor.Qualification</p>
+            <p class="text-muted">ডিপার্টমেন্ট: @Model.Doctor.Category?.Name</p>
+            <hr />
+            <form method="post" class="d-flex justify-content-around mt-4">
+                <input type="hidden" asp-for="Doctor.Id" />
+                <a asp-page="./Index" class="btn btn-secondary px-4">না, ফিরে যাই</a>
+                <button type="submit" class="btn btn-danger px-4">হ্যাঁ, মুছে ফেলুন</button>
+            </form>
+        </div>
+    </div>
+</div>

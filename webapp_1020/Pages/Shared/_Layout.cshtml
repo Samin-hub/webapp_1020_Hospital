@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - webapp_1020</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/webapp_1020.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow py-3 mb-4">
+            <div class="container">
+                <a class="navbar-brand fw-bold text-primary fs-4" asp-area="" asp-page="/Index">
+                    🏫 webapp_1020
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="navbar-collapse collapse">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0 gap-3 ps-lg-3">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-semibold px-2 hover-link" asp-page="/Index">হোম</a>
+                        </li>
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-warning fw-bold px-2 hover-link" asp-page="/Admin_1020/Index">⚙️ অ্যাডমিন ড্যাশবোর্ড</a>
+                                </li>
+                            }
+                            @if (User.IsInRole("Student"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-info fw-bold px-2 hover-link" asp-page="/Student_1020/Index">🩺 পেশেন্ট পোর্টাল</a>
+                                </li>
+                            }
+                        }
+                    </ul>
+
+                    <ul class="navbar-nav align-items-center gap-2">
+                        @if (User.Identity != null && User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item me-2 d-none d-lg-inline">
+                                <span class="navbar-text text-dark fw-medium">👋 @User.Identity.Name</span>
+                            </li>
+                            <li class="nav-item">
+                                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                                    <button type="submit" class="btn btn-outline-danger btn-sm px-3 py-2 rounded-pill fw-bold shadow-sm">লগ আউট</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="btn btn-outline-primary btn-sm px-4 py-2 rounded-pill fw-bold shadow-sm" asp-area="Identity" asp-page="/Account/Login">লগ ইন</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="btn btn-success btn-sm px-4 py-2 rounded-pill fw-bold text-white shadow-sm" style="background-color: #10b981; border: none;" asp-area="Identity" asp-page="/Account/Register">রেজিস্ট্রেশন</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <style>
+        /* মেনুর লেখার ওপর মাউস নিলে সুন্দর আন্ডারলাইন অ্যানিমেশন */
+        .hover-link {
+        position: relative;
+        transition: color 0.2s ease;
+        }
+
+        .hover-link:hover {
+        color: #0d6efd !important;
+        }
+    </style>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2026 - webapp_1020 - <a asp-area="" asp-page="/Privacy">Privacy</a>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

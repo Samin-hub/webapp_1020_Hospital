@@ -1,0 +1,45 @@
+﻿@page
+@model webapp_1020.Pages.Admin_1020.Doctors.IndexModel
+@{
+    ViewData["Title"] = "ডাক্তারদের তালিকা";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary fw-bold">👨‍⚕️ কর্মরত ডাক্তারদের তালিকা</h2>
+    <a asp-page="Create" class="btn-success-custom">+ নতুন ডাক্তার যোগ করুন</a>
+</div>
+
+<div class="card shadow-sm border-0 rounded-3">
+    <div class="card-body p-0">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-dark">
+                <tr>
+                    <th class="ps-4">ডাক্তারের নাম</th>
+                    <th>যোগ্যতা/ডিগ্রী</th>
+                    <th>ডিপার্টমেন্ট/ক্যাটাগরি</th>
+                    <th class="text-end pe-4">অ্যাকশন</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (!Model.Doctor.Any())
+                {
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">কোনো ডাক্তারের তথ্য পাওয়া যায়নি। নতুন যোগ করুন!</td>
+                    </tr>
+                }
+                @foreach (var item in Model.Doctor)
+                {
+                    <tr>
+                        <td class="ps-4 fw-bold text-dark">🩺 @item.Name</td>
+                        <td><span class="badge bg-light text-dark border">@item.Qualification</span></td>
+                        <td class="text-primary fw-bold">@item.Category?.Name</td>
+                        <td class="text-end pe-4">
+                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-sm btn-outline-primary me-2">সম্পাদনা</a>
+                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-sm btn-outline-danger">মুছে ফেলুন</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Admin Dashboard</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+            .admin-sidebar {
+                background: #1e293b;
+                color: white;
+                min-height: 100vh;
+                padding: 20px;
+                box-shadow: 4px 0 10px rgba(0,0,0,0.1);
+            }
+
+            .admin-nav-link {
+                color: #cbd5e1;
+                display: block;
+                padding: 12px 15px;
+                text-decoration: none;
+                border-radius: 8px;
+                margin-bottom: 8px;
+                font-weight: 500;
+                transition: all 0.3s ease;
+            }
+                /* মাউস নিলে সুন্দর ব্যাকগ্রাউন্ড ও ডানে একটু সরে যাওয়ার হোভার ইফেক্ট */
+                .admin-nav-link:hover {
+                    background: #0f172a;
+                    color: #38bdf8 !important;
+                    padding-left: 22px;
+                    box-shadow: inset 4px 0 0 #38bdf8;
+                }
+
+                .admin-nav-link.active-menu {
+                    background: #0f172a;
+                    color: #38bdf8 !important;
+                    font-weight: bold;
+                }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar (বাম পাশের মেনুবার) -->
+            <div class="col-md-3 col-lg-2 admin-sidebar">
+                <h4 class="text-center mb-4 pb-2 border-bottom">🏥 হসপিটাল অ্যাডমিন</h4>
+
+                <a class="admin-nav-link" asp-page="/Admin_1020/Index">🎛️ ড্যাশবোর্ড</a>
+
+                <!-- এই দুটি নতুন অপশন যুক্ত করা হলো, যা সরাসরি পেজে নিয়ে যাবে -->
+                <a class="admin-nav-link" asp-page="/Admin_1020/Categories/Index">📂 ক্যাটাগরি সমূহ</a>
+                <a class="admin-nav-link" asp-page="/Admin_1020/Doctors/Index">👨‍⚕️ ডাক্তার ম্যানেজমেন্ট</a>
+
+                <a class="admin-nav-link text-info" asp-page="/Index">🏠 মূল সাইট</a>
+
+                <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                    <button type="submit" class="btn btn-danger w-100 mt-4 rounded-3 shadow">লগ আউট</button>
+                </form>
+            </div>
+
+            <!-- Main Content (ডান পাশের মূল অংশ) -->
+            <div class="col-md-9 col-lg-10 p-4" style="background-color: #f8fafc;">
+                <main role="main">
+                    @RenderBody()
+                </main>
+            </div>
+        </div>
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

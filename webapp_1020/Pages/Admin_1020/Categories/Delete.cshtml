@@ -1,0 +1,25 @@
+﻿@page
+@model webapp_1020.Pages.Admin_1020.Categories.DeleteModel
+@{
+    ViewData["Title"] = "ক্যাটাগরি ডিলিট";
+}
+
+<div class="container mt-4" style="max-width: 500px;">
+    <div class="card shadow border-0 rounded-3">
+        <div class="card-header bg-danger text-white p-3 text-center">
+            <h4 class="mb-0">⚠️ আপনি কি নিশ্চিত এটি মুছতে চান?</h4>
+        </div>
+        <div class="card-body p-4 text-center">
+            <p class="lead">নিচের ক্যাটাগরিটি চিরতরে মুছে যাবে!</p>
+            <hr />
+            <h4 class="text-primary fw-bold">@Model.Category.Name</h4>
+            <p class="text-muted">@Model.Category.Description</p>
+            <hr />
+            <form method="post" class="d-flex justify-content-around mt-4">
+                <input type="hidden" asp-for="Category.Id" />
+                <a asp-page="./Index" class="btn btn-secondary px-4">না, ফিরে যাই</a>
+                <button type="submit" class="btn btn-danger px-4">হ্যাঁ, মুছে ফেলুন</button>
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,40 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+<ul class="navbar-nav d-flex align-items-center gap-2">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item me-2">
+            <span class="nav-link text-dark fw-bold">👋 হ্যালো, @User.Identity?.Name!</span>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post">
+                <button type="submit" class="btn btn-outline-danger btn-sm px-3 py-2 rounded-pill fw-bold shadow-sm">লগ আউট</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link btn btn-success text-white btn-sm px-4 py-2 rounded-pill fw-bold shadow-sm me-2 hover-effect"
+               style="background-color: #10b981; border: none;"
+               asp-area="Identity" asp-page="/Account/Register">রেজিস্টার</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link btn btn-primary text-white btn-sm px-4 py-2 rounded-pill fw-bold shadow-sm hover-effect"
+               style="background-color: #3b82f6; border: none;"
+               asp-area="Identity" asp-page="/Account/Login">লগ ইন</a>
+        </li>
+    }
+</ul>
+
+<style>
+    /* বাটনের ওপর মাউস নিলে হালকা গ্লো করার ইফেক্ট */
+    .hover-effect:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+        opacity: 0.9;
+        transition: all 0.2s ease;
+    }
+</style>

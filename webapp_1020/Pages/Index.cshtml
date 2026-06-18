@@ -1,0 +1,101 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="p-5 mb-5 rounded-4 bg-light shadow-sm position-relative overflow-hidden" style="background: linear-gradient(135deg, #e0f2fe 0%, #f0fdf4 100%); border: 1px solid #bae6fd;">
+    <div class="container-fluid py-4 text-center text-lg-start row align-items-center">
+        <div class="col-lg-7">
+            <span class="badge bg-primary px-3 py-2 rounded-pill mb-3 shadow-sm text-uppercase fw-bold">ISU Campus Portal</span>
+            <h1 class="display-4 fw-black text-slate-800 mb-3" style="color: #1e293b; font-weight: 800;">
+                ক্যাম্পাস রিসোর্স ও ইক্যুইপমেন্ট <br><span class="text-primary">বুকিং সিস্টেম</span>
+            </h1>
+            <p class="col-lg-10 fs-5 text-muted mb-4">
+                ইন্টারন্যাশনাল স্ট্যান্ডার্ড ইউনিভার্সিটির (ISU) ল্যাব কিটস, প্রোজেক্টর, স্পোর্টস গিয়ার এবং সেমিনার রুম বুকিং এখন এক ক্লিকেই। আপনার প্রয়োজনীয় একাডেমিক রিসোর্স আজই বুক করুন।
+            </p>
+            <div class="d-flex flex-wrap justify-content-center justify-content-lg-start gap-3">
+                @if (User.Identity != null && User.Identity.IsAuthenticated)
+                {
+                    if (User.IsInRole("Student"))
+                    {
+                        <a asp-page="/Student_1020/Create" class="btn btn-primary btn-lg px-4 py-3 rounded-3 fw-bold shadow">📅 নতুন রিসোর্স বুক করুন</a>
+                        <a asp-page="/Student_1020/Index" class="btn btn-outline-dark btn-lg px-4 py-3 rounded-3 fw-semibold">📋 আমার বুকিং হিস্ট্রি</a>
+                    }
+                    else if (User.IsInRole("Admin"))
+                    {
+                        <a asp-page="/Admin_1020/Index" class="btn btn-danger btn-lg px-4 py-3 rounded-3 fw-bold shadow">⚙️ অ্যাডমিন প্যানেল পরিচালনা</a>
+                    }
+                }
+                else
+                {
+                    <a asp-area="Identity" asp-page="/Account/Login" class="btn btn-primary btn-lg px-5 py-3 rounded-3 fw-bold shadow">শুরু করতে লগইন করুন 🚀</a>
+                    <a asp-area="Identity" asp-page="/Account/Register" class="btn btn-outline-secondary btn-lg px-4 py-3 rounded-3 fw-semibold">রেজিস্ট্রেশন</a>
+                }
+            </div>
+        </div>
+        <div class="col-lg-5 d-none d-lg-block text-center">
+            <div class="display-1 p-5 bg-white shadow rounded-circle d-inline-block border border-info animate-bounce" style="font-size: 6rem;">💻</div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-dark">উপলব্ধ রিসোর্স ক্যাটাগরি সমূহ</h2>
+        <p class="text-muted">শিক্ষার্থী ও শিক্ষকদের একাডেমিক সহায়তায় আমাদের সহজ লজিস্টিকস সাপোর্ট</p>
+        <hr class="mx-auto bg-primary" style="width: 60px; height: 3px;">
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 hover-card">
+                <div class="card-body p-4">
+                    <div class="fs-1 mb-3 text-primary">🖥️</div>
+                    <h5 class="card-title fw-bold text-slate-700">কম্পিউটার ও ল্যাব কিটস</h5>
+                    <p class="card-text text-muted">সিএসই ল্যাব অ্যাক্সেস, মাইক্রোকন্ট্রোলার বোর্ড, আরডুইনো এবং বিভিন্ন রোবোটিক্স কিটস বুকিংয়ের ব্যবস্থা।</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-4 px-4">
+                    <span class="text-primary fw-semibold fs-6">Task 3: Connected & Tracking &rarr;</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 hover-card">
+                <div class="card-body p-4">
+                    <div class="fs-1 mb-3 text-success">📹</div>
+                    <h5 class="card-title fw-bold text-slate-700">প্রোজেক্টর ও মাল্টিমিডিয়া</h5>
+                    <p class="card-text text-muted">প্রেজেন্টেশন, সেমিনার বা ক্লাব ইভেন্টের জন্য হাই-ডেফিনিশন প্রোজেক্টর এবং সাউন্ড সিস্টেম বুকিং প্যানেল।</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-4 px-4">
+                    <span class="text-success fw-semibold fs-6">Real-time Available Status &rarr;</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-3 hover-card">
+                <div class="card-body p-4">
+                    <div class="fs-1 mb-3 text-warning">⚽</div>
+                    <h5 class="card-title fw-bold text-slate-700">ইনডোর ও আউটডোর স্পোর্টস</h5>
+                    <p class="card-text text-muted">বিশ্ববিদ্যালয়ের সাধারণ শিক্ষার্থীদের ইনডোর গেমস এবং টুর্নামেন্টের বিভিন্ন ক্রীড়া সামগ্রী ব্যবহারের রিকোয়েস্ট ফরম।</p>
+                </div>
+                <div class="card-footer bg-transparent border-0 pb-4 px-4">
+                    <span class="text-warning fw-semibold fs-6">Instant Verification &rarr;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .hover-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+        .hover-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08) !important;
+        }
+</style>

@@ -1,0 +1,41 @@
+﻿@page
+@model webapp_1020.Pages.Admin_1020.Doctors.EditModel
+@{
+    ViewData["Title"] = "ডাক্তার তথ্য সম্পাদনা";
+}
+
+<div class="container mt-4" style="max-width: 600px;">
+    <div class="card shadow border-0 rounded-3">
+        <div class="card-header bg-warning text-dark p-3">
+            <h4 class="mb-0">📝 ডাক্তারের তথ্য আপডেট করুন</h4>
+        </div>
+        <div class="card-body p-4">
+            <form method="post">
+                <input type="hidden" asp-for="Doctor.Id" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Doctor.Name" class="control-label fw-bold mb-1">ডাক্তারের নাম:</label>
+                    <input asp-for="Doctor.Name" class="form-control" />
+                    <span asp-validation-for="Doctor.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-3">
+                    <label asp-for="Doctor.Qualification" class="control-label fw-bold mb-1">যোগ্যতা:</label>
+                    <input asp-for="Doctor.Qualification" class="form-control" />
+                    <span asp-validation-for="Doctor.Qualification" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Doctor.CategoryId" class="control-label fw-bold mb-1">ডিপার্টমেন্ট পরিবর্তন করুন:</label>
+                    <select asp-for="Doctor.CategoryId" class="form-select" asp-items="ViewBag.CategoryId"></select>
+                    <span asp-validation-for="Doctor.CategoryId" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-page="Index" class="btn btn-outline-secondary px-4">বাতিল</a>
+                    <button type="submit" class="btn btn-warning fw-bold px-4">আপডেট করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

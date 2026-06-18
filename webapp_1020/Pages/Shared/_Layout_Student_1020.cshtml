@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Student/Patient Portal</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <style>
+            .student-navbar {
+                background: linear-gradient(135deg, #0284c7, #0369a1);
+            }
+
+            .student-card {
+                border-radius: 12px;
+                border: none;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+            }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg text-white student-navbar p-3 shadow-sm">
+        <div class="container">
+            <a class="navbar-brand text-white fw-bold" asp-page="/Student_1020/Index">🩺 পেশেন্ট পোর্টাল (Student)</a>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end">
+                <ul class="navbar-nav gap-2">
+                    <li class="nav-item"><a class="btn btn-light btn-sm text-info fw-bold px-3 rounded-pill" asp-page="/Student_1020/Index">📋 আমার বুকিং তালিকা</a></li>
+                    <li class="nav-item"><a class="btn btn-info btn-sm text-white border border-light fw-bold px-3 rounded-pill" asp-page="/Student_1020/Create">📅 নতুন বুকিং</a></li>
+                    <li class="nav-item"><a class="nav-link text-white-50" asp-page="/Index">মূল হোমপেজ</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4">
+        <main role="main">
+            @RenderBody()
+        </main>
+    </div>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿@page
+@model webapp_1020.Pages.Admin_1020.Categories.EditModel
+@{
+    ViewData["Title"] = "ক্যাটাগরি সম্পাদনা";
+}
+
+<div class="container mt-4" style="max-width: 600px;">
+    <div class="card shadow border-0 rounded-3">
+        <div class="card-header bg-warning text-dark p-3">
+            <h4 class="mb-0">📝 ক্যাটাগরি তথ্য পরিবর্তন করুন</h4>
+        </div>
+        <div class="card-body p-4">
+            <form method="post">
+                <input type="hidden" asp-for="Category.Id" />
+
+                <div class="form-group mb-3">
+                    <label asp-for="Category.Name" class="control-label fw-bold mb-1">ক্যাটাগরির নাম:</label>
+                    <input asp-for="Category.Name" class="form-control" />
+                    <span asp-validation-for="Category.Name" class="text-danger"></span>
+                </div>
+
+                <div class="form-group mb-4">
+                    <label asp-for="Category.Description" class="control-label fw-bold mb-1">বিবরণ:</label>
+                    <textarea asp-for="Category.Description" class="form-control" rows="3"></textarea>
+                    <span asp-validation-for="Category.Description" class="text-danger"></span>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <a asp-page="Index" class="btn btn-outline-secondary px-4">বাতিল করুন</a>
+                    <button type="submit" class="btn btn-warning fw-bold px-4">আপডেট করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
